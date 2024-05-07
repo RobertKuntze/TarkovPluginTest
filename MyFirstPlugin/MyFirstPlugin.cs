@@ -2,6 +2,7 @@ using EFT;
 using UnityEngine;
 using Comfort.Common;
 using BepInEx;
+using System.Collections.Generic;
 
 namespace MyFirstPlugin {
     [BepInPlugin("com.example.MyFirstPlugin", "MyFirstPlugin", "0.1")]
@@ -22,21 +23,22 @@ namespace MyFirstPlugin {
             game = GameObject.Find("GAME").GetComponent<LocalGame>();
             var gameTimer = game.GameTimer;
 
-            var allPlayersList = gameWorld.AllPlayersEverExisted;
+            var allPlayersList = gameWorld.AllAlivePlayersList;
 
             if (!(gameTimer.method_0().TotalSeconds < 30)) {
                 return;
             }
 
-            var rand = new Random();
-            int number = rand.Next(2);
+            var survivingPlayers = new List<Player>();
             foreach (Player player in allPlayersList) {
-                if (player.IsAI) {
-                    player.KillMe(EBodyPartColliderType.HeadCommon, 999);
+                if (player.IsAI && UnityEngine.Random.Range(0,2) == 1 && !allPlayersList.Contains(player)) {
+                    player.KillMe(EBodyPartColliderType.HeadCommon, 1);
+                    Logger.LogWarning("Kill Confirmed");
                 }
+                // Logger.LogWarning("Not Killed");
+                survivingPlayers.Add(player);
             }
 
-            // Logger.LogWarning(gameWorld.AllAlivePlayersList);
 
             
         }
