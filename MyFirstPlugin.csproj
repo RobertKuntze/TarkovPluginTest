@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    
+    <PropertyGroup>
+        <TargetFramework>net472</TargetFramework>
+        <AssemblyName>MyFirstPlugin</AssemblyName>
+    </PropertyGroup>
+    <ItemGroup>
+
+        <Reference Include="Assembly-CSharp">
+            <HintPath>dependencies\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="BepInEx">
+            <HintPath>dependencies\BepInEx.dll</HintPath>
+        </Reference>
+        <Reference Include="Comfort">
+            <HintPath>dependencies\Comfort.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine">
+            <HintPath>dependencies\UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>dependencies\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+
+    </ItemGroup>
+</Project>
